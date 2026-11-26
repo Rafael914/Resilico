@@ -1,34 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Resilico
 
-## Getting Started
+Resilico is a server-rendered Next.js apparel storefront with customer accounts, an admin product dashboard, and a shared Supabase/Postgres database.
 
-First, run the development server:
+## Run locally
 
-```bash
+Install dependencies and start the Next.js development server:
+
+```powershell
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`. The app reads Supabase and session settings from `.env.local`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Ordering and J&T Express
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Before using checkout, run `supabase/migrations/202610290001_create_orders_and_jnt_shipments.sql` in the Supabase SQL editor. This adds inventory, orders, order items, shipment records, and an atomic order placement function. Stock defaults to zero; set each product's stock in **Admin → Products** before it can be ordered.
 
-## Learn More
+Customers can add catalog products to their order bag, enter a Philippine delivery address, place an order, and view order status at **My orders**. Orders reserve stock and create a shipment record with carrier `J&T Express`. Admins can use **Orders & J&T** to enter the J&T tracking number and update shipment status after booking the parcel in J&T's system.
 
-To learn more about Next.js, take a look at the following resources:
+The current foundation stores tracking information but does not call J&T's booking or tracking API. Live carrier integration needs J&T API credentials and an enabled merchant account; none are configured in this project. Payment processing is also not configured, so orders are created with `Pending` status.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Ordering API
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+The API is versioned under `/api/v1` and uses the existing signed Resilico session cookie.
 
-## Deploy on Vercel
+- `POST /api/v1/orders` — place an order. JSON body: `{ "items": [{ "productId": 1, "quantity": 2 }], "shipping": { "name": "Customer Name", "phone": "09...", "addressLine1": "Street", "city": "City", "province": "Province", "postalCode": "0000", "country": "Philippines" } }`.
+- `GET /api/v1/orders` — list the signed-in customer's orders; admins see all orders.
+- `GET /api/v1/orders/{id}` — view an order, its items, and its shipment (owner or admin).
+- `GET /api/v1/shipments?orderId={id}` — retrieve shipment tracking (owner or admin).
+- `PATCH /api/v1/shipments/{id}` — admin update, for example `{ "trackingNumber": "JT1234567890", "shippingStatus": "In Transit", "shippedAt": "2026-10-29T08:00:00Z" }`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Errors use a consistent JSON shape with `success`, `statusCode`, `message`, `errors`, and `timestamp`. The supplied Lab 05 describes a broader 39-endpoint API; this implementation establishes the order and J&T fulfillment path first.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Share locally with ngrok
+
+With the app running, open a second terminal and run:
+
+```powershell
+ngrok http 3000
+```
+
+Open the HTTPS forwarding URL ngrok prints. Keep the tunnel running while sharing the site. To use a reserved ngrok domain, pass that assigned domain with ngrok's `--url` option.

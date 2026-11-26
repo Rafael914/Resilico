@@ -1,0 +1,36 @@
+.customer-page { min-height: 100vh; padding: 0 6vw 32px; background: #f7f8f5; color: #203a32; }
+.customer-header { height: 75px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e4eae4; }
+.customer-brand { display: flex; align-items: center; gap: 10px; color: #173f36; font-size: 19px; font-weight: 750; letter-spacing: -.04em; text-decoration: none; }
+.customer-brand .brand-mark { width: 32px; height: 32px; font-size: 17px; }
+.customer-account { display: flex; align-items: center; gap: 18px; }
+.customer-greeting { color: #52685d; font-size: 13px; font-weight: 600; }
+.customer-signout { padding: 9px 13px; border: 1px solid #dfe7df; border-radius: 7px; background: #fff; color: #52685d; font: inherit; font-size: 12px; font-weight: 650; cursor: pointer; }
+.customer-signout:hover { border-color: #b8cfc0; color: #205a45; }
+.customer-hero { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; padding: 49px 0 28px; }
+.customer-eyebrow { margin: 0 0 11px; color: #4b856a; font-size: 10px; font-weight: 750; letter-spacing: .15em; }
+.customer-hero h1 { color: #1c3e34; font-size: clamp(29px, 5vw, 39px); }
+.customer-hero > div > p:last-child { margin: 10px 0 0; color: #839087; font-size: 14px; }
+.collection-count { padding: 7px 11px; border: 1px solid #e1e9e1; border-radius: 20px; background: #fff; color: #74847a; font-size: 11px; white-space: nowrap; }
+.customer-products { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+.customer-product-card { min-width: 0; overflow: hidden; border: 1px solid #e7ece6; border-radius: 12px; background: #fff; box-shadow: 0 5px 18px rgb(35 62 45 / 3%); transition: transform .18s, box-shadow .18s; }
+.customer-product-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgb(35 62 45 / 8%); }
+.customer-product-image-wrap { aspect-ratio: 4 / 3; overflow: hidden; background: #eef3ed; }
+.customer-product-image { display: block; width: 100%; height: 100%; object-fit: cover; }
+.customer-product-placeholder { display: grid; width: 100%; height: 100%; place-items: center; color: #bed0c1; font-size: 58px; font-weight: 700; }
+.customer-product-info { padding: 15px 16px 17px; }
+.customer-product-brand { margin: 0 0 6px; color: #70917a; font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.customer-product-info h2 { margin: 0; color: #2b4539; font-size: 15px; font-weight: 650; line-height: 1.4; }
+.customer-product-description { display: -webkit-box; min-height: 34px; overflow: hidden; margin: 7px 0 12px; color: #89958d; font-size: 11px; line-height: 1.55; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.customer-product-price { display: block; margin-top: 12px; color: #236348; font-size: 14px; }
+.customer-empty { display: grid; min-height: 280px; align-content: center; justify-items: center; padding: 28px; border: 1px dashed #dce6dd; border-radius: 12px; background: rgb(255 255 255 / 70%); text-align: center; }
+.customer-empty > span { display: grid; width: 48px; height: 48px; place-items: center; border-radius: 14px; background: #edf5ef; color: #5e9070; font-size: 27px; }
+.customer-empty h2 { margin: 15px 0 6px; color: #405b4c; font-size: 16px; }
+.customer-empty p { margin: 0; color: #8c9990; font-size: 12px; }
+.customer-footer { margin-top: 34px; padding-top: 17px; border-top: 1px solid #e6ebe5; color: #a2aba4; font-size: 10px; text-align: center; }
+@media (max-width: 1100px) { .customer-products { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 760px) { .customer-page { padding-right: 22px; padding-left: 22px; } .customer-products { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; } .customer-hero { padding-top: 36px; } }
+@media (max-width: 460px) { .customer-products { grid-template-columns: 1fr; } .customer-account { gap: 9px; } .customer-greeting { max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } }
+.order-add-button { display: inline-flex; min-height: 35px; margin-top: 12px; align-items: center; justify-content: center; padding: 0 12px; border: 1px solid #285c45; background: #285c45; color: #fff; font: inherit; font-size: 10px; font-weight: 700; cursor: pointer; }
+.order-add-button:hover { background: #1b4934; }
+.order-nav-link { color: #46664d; font-size: 10px; font-weight: 700; text-decoration: none; }
+@media (max-width: 600px) { .customer-account { gap: 9px; flex-wrap: wrap; justify-content: flex-end; }.order-nav-link { font-size: 9px; } }
