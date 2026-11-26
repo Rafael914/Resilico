@@ -3,7 +3,7 @@
 import bcrypt from 'bcryptjs'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
-import { adminDatabaseConfig, getCurrentAdmin } from '../security'
+import { adminDatabaseConfig, getCurrentAdmin } from '../../../app/admin/security'
 
 export async function createAdminManagedUser(formData: FormData) {
   const admin = await getCurrentAdmin()

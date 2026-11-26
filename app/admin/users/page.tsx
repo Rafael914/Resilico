@@ -1,10 +1,10 @@
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
-import { signOut } from '../../auth/actions'
+import { signOut } from '../../../server/actions/auth'
 import { dbHeaders } from '../../api/v1/_lib'
 import { adminDatabaseConfig, getCurrentAdmin } from '../security'
 import PendingButton from '../PendingButton'
-import { createAdminManagedUser, deleteAdminManagedUser } from './actions'
+import { createAdminManagedUser, deleteAdminManagedUser } from '../../../server/actions/admin/users'
 import '../admin.css'
 
 type ManagedUser = {

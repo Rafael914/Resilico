@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
-import { signOut } from '../auth/actions'
+import { signOut } from '../../server/actions/auth'
 import { verifySession } from '../auth/session'
 import { adminDatabaseConfig } from '../admin/security'
 import { AddToOrder, OrderLinks } from './OrderControls'

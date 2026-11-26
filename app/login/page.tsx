@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { login } from '../auth/actions'
+import { login } from '../../server/actions/auth'
 import { authMessage } from '../auth/messages'
 
 export default async function LoginPage({ searchParams }: { searchParams: Promise<{ message?: string }> }) {

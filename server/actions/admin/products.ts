@@ -6,7 +6,7 @@ import { randomUUID } from 'node:crypto'
 import { headers } from 'next/headers'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
-import { adminDatabaseConfig, getCurrentAdmin } from './security'
+import { adminDatabaseConfig, getCurrentAdmin } from '../../../app/admin/security'
 
 const maxImageBytes = 5 * 1024 * 1024
 

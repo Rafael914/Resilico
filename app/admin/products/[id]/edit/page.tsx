@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import { notFound, redirect } from 'next/navigation'
-import { signOut } from '../../../../auth/actions'
+import { signOut } from '../../../../../server/actions/auth'
 import { dbHeaders } from '../../../../api/v1/_lib'
 import { adminDatabaseConfig, getCurrentAdmin } from '../../../security'
-import { updateProduct, updateProductVariant } from '../../../actions'
+import { updateProduct, updateProductVariant } from '../../../../../server/actions/admin/products'
 import PendingButton from '../../../PendingButton'
 import '../../../admin.css'
 

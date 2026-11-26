@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { register } from '../auth/actions'
+import { register } from '../../server/actions/auth'
 import { authMessage } from '../auth/messages'
 
 export default async function RegisterPage({ searchParams }: { searchParams: Promise<{ message?: string }> }) {
